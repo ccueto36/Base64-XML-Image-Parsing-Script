@@ -45,7 +45,7 @@ def decodeBase64Strings(filePath):
 					folderNameCounter += 1
 	print(str(totalFileCounter) + " images decoded")
 
-#Helper function, finds employee_id and employee_photo from the given parent element and decodes it
+#Helper function, finds employee_id and employee_photo from the given parent element and decodes employee_photo as 'employee_id.jpg'
 def find_and_decode(elem, folder_name):
 	if(elem[0].tag == 'EMPLID'):
 		employee_id = elem[0].text
