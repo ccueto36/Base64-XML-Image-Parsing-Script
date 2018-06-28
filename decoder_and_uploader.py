@@ -55,7 +55,7 @@ def find_and_decode(elem, folder_name):
 	with open("images/" + folder_name + "/" + employee_id + ".jpg", "wb") as fh:
 		fh.write(pybase64.b64decode(employee_photo, altchars=None, validate=False))
 
-#Compresses child directories of the images parent directory that were created by decodeBase64Strings()
+#Compresses child directories of the 'images' parent directory that were created by decodeBase64Strings()
 #Stores all zipped directories into "zippedFiles" directory 
 def createZip():
 	print("Zipping image folders...")
