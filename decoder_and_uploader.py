@@ -49,9 +49,9 @@ def decodeBase64Strings(filePath):
 def find_and_decode(elem, folder_name):
 	if(elem[0].tag == 'EMPLID'):
 		employee_id = elem[0].text
-	if(elem[1].tag == 'EMPLOYEE_PHOTO'):
+	elif(elem[1].tag == 'EMPLOYEE_PHOTO'):
 		employee_photo = str.encode(elem[1].text)
-	elem.clear()
+	elem.clear() #frees up 'elem' from working tree to free up memory as tree gets built, very important for memory optimization
 	with open("images/" + folder_name + "/" + employee_id + ".jpg", "wb") as fh:
 		fh.write(pybase64.b64decode(employee_photo, altchars=None, validate=False))
 
@@ -88,13 +88,11 @@ def uploadZip():
 	auth = (username, api_key)
 	for file in os.listdir(rootDirectory):
 		files = {'data': open(rootDirectory + '/' + str(file), 'rb')}
-		
 		try:
 			r = requests.post(url, auth=auth, files=files)
 		except requests.exceptions.RequestException as e:
 			print(e)
 			sys.exit(1)
-
 		if(r.status_code == 200):
 			print("Zipped folder " + str(uploadCount) + " uploaded successfully!")
 			uploadCount += 1

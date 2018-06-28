@@ -9,9 +9,9 @@ def main():
 	end = time.time()
 	totalTime = round(end - start)
 	print("Decoding took " + str(totalTime) + " seconds", end =" ")
-	print(" - %d minutes(s) and %d second(s)" % (totalTime / 60, totalTime % 60))		
+	print(" - %d minutes(s) and %d second(s)" % (totalTime // 60, totalTime % 60))		
 	if(du.createZip() == True): #Compresses image folders into zipped folders
-		du.uploadZip()  #Uploads the newly created zipped folders
+		du.uploadZip()  #Uploads the newly created zipped folders upon successful zip creation
 	du.removeDirectories() #Removes all directories for future use
 
 main()
